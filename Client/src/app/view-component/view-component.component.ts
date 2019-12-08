@@ -12,8 +12,8 @@ export class ViewComponentComponent implements OnInit {
   ActiveSubsystem: SubSystem;
 
   constructor(private httpClient: HttpClient) {
-    var raceArray = [];
-    this.httpClient.get('http://localhost:8080/rest1/subsystem/', {
+    const raceArray = [];
+    this.httpClient.get('http://localhost:8080/Server/subsystem/', {
       params: {
         /*        appid: 'id1234',
                 cnt: '5'*/
@@ -23,8 +23,8 @@ export class ViewComponentComponent implements OnInit {
       .subscribe(resp => {
         console.log(resp.body);
         raceArray.push(resp.body);
-        for (let obj of raceArray) {
-          for (let i in obj) {
+        for (const obj of raceArray) {
+          for (const i in obj) {
             console.log(obj[i].name);
             this.SubSystems.push(new SubSystem(obj[i].id, obj[i].name, obj[i].url, this.httpClient));
           }
@@ -36,11 +36,10 @@ export class ViewComponentComponent implements OnInit {
   ngOnInit() {}
 
   onChoice(subsys: string) {
-    for(let i = 0; i < this.SubSystems.length; i++) {
-      if(this.SubSystems[i].name == subsys) {
+    for (let i = 0; i < this.SubSystems.length; i++) {
+      if (this.SubSystems[i].name == subsys) {
         this.ActiveSubsystem = this.SubSystems[i];
-      }
-      else {
+      } else {
       }
     }
   }
@@ -51,7 +50,7 @@ class SubSystem {
   id: number;
   name: string;
   url: string;
-  command = "";
+  command = '';
   command_array = [];
   resault: string;
   timestemp: string;
@@ -63,10 +62,10 @@ class SubSystem {
   }
 
   setCommand() {
-    console.log(this.name + " : " + this.command);
+    console.log(this.name + ' : ' + this.command);
     this.command_array.push(this.command);
 
-    this.httpClient.post('http://localhost:8080/rest1/subsystem?massage='+this.command+'&subsystem_name='+this.name, {
+    this.httpClient.post('http://localhost:8080/Server/subsystem?massage=' + this.command + '&subsystem_name=' + this.name, {
       params: {
 /*        massage: this.command,
         subsystem_name: this.name*/

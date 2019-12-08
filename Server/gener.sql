@@ -1,13 +1,13 @@
-CREATE SCHEMA `pmp_subsystems` ;
+CREATE SCHEMA `storage` ;
 
-use pmp_subsystems;
+use storage;
 
-CREATE TABLE `pmp_subsystems`.`subsystem` (
+CREATE TABLE `storage`.`subsystem` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
 
-CREATE TABLE `pmp_subsystems`.`command` (
+CREATE TABLE `storage`.`command` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `subsystem_id` INT NOT NULL,
   `command` VARCHAR(45) NULL,
@@ -17,6 +17,6 @@ CREATE TABLE `pmp_subsystems`.`command` (
   INDEX `subsystem_id_idx` (`subsystem_id` ASC) VISIBLE,
   CONSTRAINT `subsystem_id`
     FOREIGN KEY (`subsystem_id`)
-    REFERENCES `pmp_subsystems`.`subsystem` (`id`)
+    REFERENCES `storage`.`subsystem` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
