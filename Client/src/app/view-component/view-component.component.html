@@ -1,0 +1,28 @@
+<div>
+  <table border = 1>
+    <tr>
+      <th *ngFor="let sub of SubSystems" (click)="onChoice(sub.name)">{{sub.name}}</th>
+    </tr>
+  </table>
+  <div>
+    <input [(ngModel)]="ActiveSubsystem.command" (keyup.enter)="ActiveSubsystem.setCommand()">
+    <!--<textarea>{{ims_massage_array}}</textarea>-->
+    <ul><li *ngFor="let command1 of ActiveSubsystem.command_array">{{command1}}</li></ul>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
